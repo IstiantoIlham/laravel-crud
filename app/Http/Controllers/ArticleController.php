@@ -24,14 +24,14 @@ class ArticleController extends Controller
         return view('articles.create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request, Article $article)
     {
         $attributes = $request->validate([
             'title' => 'required',
             'body' => 'required'
         ]);
 
-        $article = Article::create($attributes);
+        $article->create($attributes);
         return to_route('articles.index', $article);
     }
 

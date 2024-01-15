@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,8 @@ Route::get('/', function () {
 
 
 Route::resource('articles', ArticleController::class);
+
+
 // Route::controller(ArticleController::class)->group(function () {
 //     Route::get('articles', 'index')->name('articles.index');
 //     Route::get('articles/create', 'create')->name('articles.create');
@@ -29,3 +32,8 @@ Route::resource('articles', ArticleController::class);
 //     Route::get('articles/{article}', 'show')->name('articles.show');
 //     Route::delete('articles/{article}', 'destroy')->name('articles.destroy');
 // });
+
+Route::controller(RegisterController::class)->group(function () {
+    Route::get('register', 'showRegistrationForm')->name('register');
+    Route::post('register', 'registerUser')->name('register');
+});
